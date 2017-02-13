@@ -2,6 +2,7 @@ import Tkinter as tk
 import pygubu
 import ttk
 import datetime
+import RPi.GPIO as GPIO
 
 class Application:
     ON_STYLE = "on.TButton"
@@ -27,26 +28,41 @@ class Application:
         self.vacuum = builder.get_object("Button_Vacuum")
         self.outlet = builder.get_object("Button_Outlet")
         self.status = builder.get_object("Text_Status")
+
         self.status_log("Started")
+        self.init_gpio()
+        self.init_button_state()
+
+    def init_button_state(self):
+        self.stepper.configure(style = (Application.ON_STYLE if GPIO.input(17) else Application.OFF_STYLE))
+        self.water.configure(style = (Application.ON_STYLE if GPIO.input(16) else Application.OFF_STYLE))
+        self.vacuum.configure(style = (Application.ON_STYLE if GPIO.input(22) else Application.OFF_STYLE))
+        self.outlet.configure(style = (Application.ON_STYLE if GPIO.input(23) else Application.OFF_STYLE))
 
     def button_clicked(self, button, gpio_pin):
         self.status_log("Toggle GPIO %d" % gpio_pin)
         if button.cget("style") == Application.ON_STYLE:
+            GPIO.output(gpio_pin, GPIO.LOW)
             button.configure(style = Application.OFF_STYLE)
         else:
+            GPIO.output(gpio_pin, GPIO.HIGH)
             button.configure(style = Application.ON_STYLE)
 
     def on_stepper_clicked(self):
-        self.button_clicked(self.stepper, 1)
+        self.button_clicked(self.stepper, 17)
 
     def on_water_clicked(self):
-        self.button_clicked(self.water, 2)
+        self.button_clicked(self.water, 16)
 
     def on_vacuum_clicked(self):
-        self.button_clicked(self.vacuum, 3)
+        self.button_clicked(self.vacuum, 22)
 
     def on_outlet_clicked(self):
-        self.button_clicked(self.outlet, 4)
+        self.button_clicked(self.outlet, 23)
+
+    def init_gpio(self):
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup([16,17,22,23,24,25,26,27], GPIO.OUT)
 
     def status_log(self, text):
         timestamp = datetime.datetime.now().strftime("%H:%M:%S")

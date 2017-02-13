@@ -18,7 +18,7 @@
         <property name="compound">left</property>
         <property name="state">normal</property>
         <property name="text" translatable="yes">Stepper Motors</property>
-        <property name="width">30</property>
+        <property name="width">18</property>
         <layout>
           <property name="column">0</property>
           <property name="ipady">20</property>
@@ -32,7 +32,7 @@
         <property name="command">on_water_clicked</property>
         <property name="state">normal</property>
         <property name="text" translatable="yes">Water Pump</property>
-        <property name="width">30</property>
+        <property name="width">18</property>
         <layout>
           <property name="column">0</property>
           <property name="ipady">20</property>
@@ -47,7 +47,7 @@
         <property name="compound">bottom</property>
         <property name="state">normal</property>
         <property name="text" translatable="yes">Vacuum</property>
-        <property name="width">30</property>
+        <property name="width">18</property>
         <layout>
           <property name="column">0</property>
           <property name="ipady">20</property>
@@ -62,7 +62,7 @@
         <property name="compound">bottom</property>
         <property name="state">normal</property>
         <property name="text" translatable="yes">Outlet</property>
-        <property name="width">30</property>
+        <property name="width">18</property>
         <layout>
           <property name="column">0</property>
           <property name="ipady">20</property>
