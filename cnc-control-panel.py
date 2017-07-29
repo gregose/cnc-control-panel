@@ -78,6 +78,6 @@ class Application:
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("CNC Control")
-    root.geometry("+%d+%d" % ((root.winfo_screenwidth()-200), 0))
+    root.geometry("+%d+%d" % ((root.winfo_screenwidth()-250), 37))
     app = Application(root)
     root.mainloop()
