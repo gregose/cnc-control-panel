@@ -72,6 +72,21 @@
       </object>
     </child>
     <child>
+      <object class="ttk.Button" id="Button_Spindle">
+        <property name="command">on_spindle_clicked</property>
+        <property name="compound">bottom</property>
+        <property name="state">normal</property>
+        <property name="text" translatable="yes">Spindle</property>
+        <property name="width">18</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="ipady">20</property>
+          <property name="propagate">True</property>
+          <property name="row">5</property>
+        </layout>
+      </object>
+    </child>
+    <child>
       <object class="tk.Text" id="Text_Status">
         <property name="height">8</property>
         <property name="insertwidth">0</property>
@@ -81,7 +96,7 @@
         <layout>
           <property name="column">0</property>
           <property name="propagate">True</property>
-          <property name="row">7</property>
+          <property name="row">6</property>
         </layout>
       </object>
     </child>
