@@ -28,6 +28,7 @@ class Application:
         self.vacuum = builder.get_object("Button_Vacuum")
         self.outlet = builder.get_object("Button_Outlet")
         self.spindle = builder.get_object("Button_Spindle")
+        self.coolant = builder.get_object("Button_Coolant")
         self.status = builder.get_object("Text_Status")
 
         self.status_log("Started")
@@ -40,6 +41,7 @@ class Application:
         self.vacuum.configure(style = (Application.ON_STYLE if GPIO.input(22) else Application.OFF_STYLE))
         self.outlet.configure(style = (Application.ON_STYLE if GPIO.input(23) else Application.OFF_STYLE))
         self.spindle.configure(style = (Application.ON_STYLE if GPIO.input(24) else Application.OFF_STYLE))
+        self.coolant.configure(style = (Application.ON_STYLE if GPIO.input(25) else Application.OFF_STYLE))
 
     def button_clicked(self, button, gpio_pin):
         self.status_log("Toggle GPIO %d" % gpio_pin)
@@ -64,6 +66,9 @@ class Application:
 
     def on_spindle_clicked(self):
         self.button_clicked(self.spindle, 24)
+
+    def on_coolant_clicked(self):
+        self.button_clicked(self.coolant, 25)
 
     def init_gpio(self):
         GPIO.setmode(GPIO.BCM)
